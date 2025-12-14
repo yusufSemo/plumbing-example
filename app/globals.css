@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+/* Universal light theme */
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: #F8F8FF;
+  transition: background-color 0.4s ease;
+  color: black;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+:root {
+  --brand: #0A7CA3;
+  --brand-dark: #075C78;
+  --brand-light: #BEE9F4;
+}
+
+/* Reset default margins */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove dark mode behavior completely */
+:root {
+  --font-geist-sans: var(--font-geist-sans);
+  --font-geist-mono: var(--font-geist-mono);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.appear-on-scroll {
+  animation-name: appear;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+
+  animation-timeline: view();
+  animation-range: entry 0% cover 20%;
+}
+.will-animate {
+  will-change: transform, opacity;
+}
+
+/* fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.fade-in-bottom {
+  animation: fadeInUp 1.5s ease-out forwards;
+}
+
+
+.sky-gradient {
+  background: linear-gradient(to bottom, #0F52BA, #d9ebff);
+  background-size: 200% 200%;
+  animation: skyDrift 6s ease-in-out infinite;
+}
+
+@keyframes skyDrift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 50% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.animate-line-1 {
+  /* Ensure transform works and set initial state */
+  display: block; 
+  opacity: 0; 
+  animation: fadeSlideRight 0.8s ease-in-out forwards;
+}
+
+.animate-line-2 {
+  /* Ensure transform works and set initial state */
+  display: block; 
+  opacity: 0; 
+  animation: fadeSlideRight 0.8s ease-in-out forwards;
+  animation-delay: 0.25s;
+}
+
+/* ===========================
+   Underline and Text Animation (Stable Centered Growth)
+=========================== */
+
+/* 1. Define the Text Fade-In and Scale Animation (No Change) */
+@keyframes text-scale-in {
+  0% { 
+    opacity: 0;
+  }
+  100% { 
+    opacity: 1;
+  }
+}
+
+/* 2. Define the Underline Animation (Animating WIDTH for Stability) */
+@keyframes underline-grow {
+  0% { 
+    width: 0; 
+  }
+  100% { 
+    width: 100%; 
+  }
+}
+
+/* 3. Apply the initial styles and animations to the text container */
+.animate-underline {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  color: inherit;
+
+  /* REMOVE these */
+  /* width: fit-content; */
+  /* transform-origin: top left; */
+
+  animation: text-scale-in 0.6s ease-out forwards;
+}
+
+/* 4. Apply the Underline styles and animation to the :after pseudo-element (No change needed here) */
+.animate-underline::after {
+  content: "";
+  display: block;
+  
+  /* Positioning and Thickness */
+  position: absolute; 
+  bottom: -0.5rem; /* Using the lowered value you requested */
+  
+  /* Ensures the final line is perfectly centered when it reaches 100% width */
+  left: 0;
+  right: 0; 
+  margin: 0 auto;
+  
+  width: 0; 
+  height: 5px; 
+  background: var(--brand); 
+  border-radius: 999px;
+  
+  transform: none; 
+  transform-origin: center;
+  
+  animation: underline-grow 0.8s ease-out forwards; 
+}
