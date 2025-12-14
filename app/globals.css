@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-/* Universal light theme */
+/* Global base styles */
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #F8F8FF;
   transition: background-color 0.4s ease;
   color: black;
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
+
 :root {
-  --brand: #0A7CA3;
-  --brand-dark: #075C78;
-  --brand-light: #BEE9F4;
+  --brand: #CC5A32;
+  --brand-dark: #AB4927;
+  --brand-light: #FFE8B3;
 }
 
 /* Reset default margins */
@@ -142,7 +142,7 @@ body {
   /* width: fit-content; */
   /* transform-origin: top left; */
 
-  animation: text-scale-in 0.6s ease-out forwards;
+  animation: text-scale-in 1.2s ease-out forwards;
 }
 
 /* 4. Apply the Underline styles and animation to the :after pseudo-element (No change needed here) */
@@ -168,4 +168,17 @@ body {
   transform-origin: center;
   
   animation: underline-grow 0.8s ease-out forwards; 
+}
+
+@keyframes heroFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-hero-fade {
+  animation: heroFade 2.0s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }

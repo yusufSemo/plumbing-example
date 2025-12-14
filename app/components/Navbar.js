@@ -3,46 +3,94 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { siteConfig } from "../config/siteConfig";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const { branding, header, business } = siteConfig;
+  const { colors, navbar } = branding;
+
   return (
     <>
       {/* NAVBAR */}
-      <header className="w-full sticky top-0 z-50 backdrop-blur-lg bg-white/30 border-b border-white/20">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 md:py-4">
-          
-          {/* LOGO */}
-          <Link href="/" className="flex items-center gap-2">
+      <header
+        className={`w-full sticky top-0 z-50 border-b border-white/20 ${
+          navbar.blur ? "backdrop-blur-lg" : ""
+        }`}
+        style={{ backgroundColor: colors.dark }}
+      >
+        <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-5 md:py-4">
+
+          {/* LOGO (centered on mobile) */}
+          <Link
+            href="/"
+            className="
+              flex flex-col items-center -mt-5
+              absolute left-1/2 -translate-x-1/2
+              md:static md:translate-x-0
+            "
+          >
             <Image
-              src="/Images/VClogo.png"
-              alt="VeroClicks Logo"
-              width={32}
-              height={32}
+              src={branding.logo.src}
+              alt={branding.logo.alt}
+              width={84}
+              height={84}
               className="object-contain"
+              priority
             />
-            <h1 className="text-xl font-bold">VeroClicks</h1>
+
+            <span
+              className="-mt-4 mb-2 text-lg font-extrabold leading-none tracking-tight"
+              style={{ color: colors.textOnDark }}
+            >
+              {business.name}
+            </span>
           </Link>
 
           {/* DESKTOP LINKS */}
-          <div className="hidden md:flex gap-6 text-sm font-medium items-center">
-            <a href="/portfolio" className="hover:text-(--brand-dark) transition-colors">Portfolio</a>
-            <a href="/pricing" className="hover:text-(--brand-dark) transition-colors">Pricing</a>
-            <a href="/about" className="hover:text-(--brand-dark) transition-colors">About</a>
-            <a href="/contact" className="hover:text-(--brand-dark) transition-colors">Contact</a>
+          <div className="hidden md:flex gap-6 text-sm font-medium items-center ml-auto">
+            {header.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition-colors"
+                style={{ color: colors.textMuted }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = colors.textOnDark)
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = colors.textMuted)
+                }
+              >
+                {link.label}
+              </a>
+            ))}
+
+            {/* CTA BUTTON */}
             <a
-              href="/booking"
-              className="px-4 py-2 bg-(--brand) text-white rounded-md hover:bg-(--brand-dark) transition-all"
+              href={header.cta.href}
+              className="px-4 py-2 rounded-md font-semibold transition-all"
+              style={{
+                backgroundColor: colors.primary,
+                color: colors.textOnDark,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "var(--brand-dark)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = colors.primary;
+              }}
             >
-              Book a Demo
+              {header.cta.label}
             </a>
           </div>
 
-          {/* BURGER */}
+          {/* BURGER (mobile) */}
           <button
             onClick={() => setOpen(true)}
-            className="md:hidden text-3xl font-bold"
+            className="md:hidden ml-auto text-3xl font-bold"
+            style={{ color: colors.textOnDark }}
           >
             ☰
           </button>
@@ -67,12 +115,14 @@ export default function Navbar() {
             </button>
 
             <nav className="mt-12 flex flex-col gap-6 text-xl font-medium">
-                <a href="/">Home</a>
-                <a href="/portfolio">Portfolio</a>
-                <a href="/pricing">Pricing</a>
-                <a href="/about">About</a>
-                <a href="/contact">Contact</a>
-                <a href="/booking">Book a Demo</a>
+              {header.links.map((link) => (
+                <a key={link.href} href={link.href}>
+                  {link.label}
+                </a>
+              ))}
+              <a href={header.cta.href} className="font-bold">
+                {header.cta.label}
+              </a>
             </nav>
           </div>
         </div>

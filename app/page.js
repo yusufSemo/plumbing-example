@@ -1,74 +1,12 @@
 // app/page.js
 import Image from "next/image";
+import Hero from "@/app/components/Hero";
 
 export default function Home() {
   return (
-    <div className="w-full bg-white">
-      
+    <div className="w-full">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden w-full sky-gradient min-h-[90dvh] flex items-center">
-        <div className="mx-auto max-w-7xl px-4 py-24 pb-90 md:py-40 flex flex-col md:flex-row items-start gap-38 relative z-10">
-
-          {/* Text */}
-          <div className="flex-1">
-            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight font-poppins">
-              <span className="block animate-line-1">
-                You focus on your craft
-              </span>
-
-              <span className="block pl-6 md:pl-12 text-white animate-line-2">
-                We handle your leads
-              </span>
-            </h1>
-
-
-            <p className="font-inter font-semibold mt-6 text-1xl text-black max-w-lg">
-              veroClicks helps hardworking contractors get more jobs with modern websites, automated follow-ups,
-              and no tech headaches.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4 justify-left">
-              <a
-                href="/booking"
-                className="font-manrope px-6 py-3 bg-[#0f2c45] text-white text-lg rounded-md hover:bg-(--brand-dark) transition-all"
-              >
-                Book a Demo
-              </a>
-              <a
-                href="/services"
-                className="font-manrope px-6 py-3 border border-zinc-300 rounded-md hover:bg-zinc-100 transition-all"
-              >
-                View Services
-              </a>
-            </div>
-          </div>
-
-
-          {/* Hero Image */}
-          <div className="hidden md:flex flex-1 justify-center relative z-20">
-            <Image
-              src="/Images/contractor-hero.jpg"
-              alt="Contractor working"
-              width={520}
-              height={520}
-              className="rounded-lg shadow-xl object-cover w-full max-w-xs mx-auto md:max-w-none appear-on-scroll will-animate"
-              priority
-            />
-
-          </div>
-
-        </div>
-
-        {/* Bottom foreground shape */}
-        <Image
-          src="/Images/roofBack2.png"
-          alt="Background ground curve"
-          width={450}
-          height={450}
-          className="absolute bottom-[-2%] left-0 object-cover fade-in-bottom"
-          priority
-        />
-              </section>
+     <Hero />
 
 <section className="relative py-14">
   <div className="mx-auto max-w-6xl px-6 text-center appear-on-scroll">
