@@ -45,7 +45,7 @@ export const siteConfig = {
     ],
     cta: {
       label: "Call Now",
-      href: "tel:8175550192",
+      href: "tel:8173663084",
     },
   },
 
