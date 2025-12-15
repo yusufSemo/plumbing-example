@@ -23,7 +23,7 @@ export const siteConfig = {
       /* Core brand */
       primary: "#CC5A32",      // orange (CTAs)
       dark: "#3B3B3B",         // navbar / page bg
-      light: "#F5F5F5",        // light sections
+      light: "#BEBEBE",        // light sections
 
       /* Text */
       textOnDark: "#E5E7EB",   // gray-200
