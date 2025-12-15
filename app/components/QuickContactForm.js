@@ -94,7 +94,7 @@ export default function ServiceInquiry() {
                 className="space-y-4"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  alert("Form submitted — GoHighLevel coming next");
+                  alert("Form submitted");
                 }}
               >
                 <input
@@ -135,6 +135,28 @@ export default function ServiceInquiry() {
                   style={{ outlineColor: colors.primary }}
                 />
 
+                {/* CONSENT CHECKBOX (REQUIRED) */}
+                <div className="flex items-start gap-3 text-sm text-gray-300">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-1"
+                  />
+                  <p>
+                    I agree to receive calls and text messages from{" "}
+                    <strong>{business.name}</strong> regarding my request.
+                    Message & data rates may apply. Reply STOP to opt out.{" "}
+                    <a
+                      href="/privacy-policy"
+                      target="_blank"
+                      className="underline"
+                      style={{ color: colors.primary }}
+                    >
+                      Privacy Policy
+                    </a>
+                  </p>
+                </div>
+
                 {/* PRIMARY CTA */}
                 <button
                   type="submit"
@@ -160,6 +182,7 @@ export default function ServiceInquiry() {
                   Request a Quote
                 </button>
               </form>
+
 
               <p className="text-xs text-gray-400 mt-4">
                 No spam. No pressure. Just honest help from{" "}
