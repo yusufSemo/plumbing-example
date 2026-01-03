@@ -71,26 +71,37 @@ export default function ServiceInquiry() {
             </a>
           </div>
 
-          {/* RIGHT — IFRAME ONLY */}
+          {/* RIGHT — DESKTOP: IFRAME / MOBILE: BUTTON */}
           <div>
-           <iframe
-    src="https://api.veroclicks.com/widget/form/gnflYPAziSkpumPaJ7aq"
-    style={{ width: "100%", height: "770px", border: "none" }}
-    id="inline-gnflYPAziSkpumPaJ7aq" 
-    data-layout="{'id':'INLINE'}"
-    data-trigger-type="alwaysShow"
-    data-trigger-value=""
-    data-activation-type="activateOnVisit"
-    data-activation-value="1"
-    data-deactivation-type="neverDeactivate"
-    data-deactivation-value=""
-    data-form-name="Website Form"
-    data-height="undefined"
-    data-layout-iframe-id="inline-gnflYPAziSkpumPaJ7aq"
-    data-form-id="gnflYPAziSkpumPaJ7aq"
-    title="Website Form"
-        />
+            {/* Desktop only - iframe */}
+            <div className="hidden md:block">
+              <iframe
+                src="https://api.veroclicks.com/widget/form/gnflYPAziSkpumPaJ7aq"
+                className="w-full h-[770px] border-none overflow-hidden"
+              />
+            </div>
 
+            {/* Mobile only - button */}
+            <div className="md:hidden flex flex-col items-center text-center p-8 rounded-xl" style={{ backgroundColor: "#1f1f1f" }}>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Ready to Get Started?
+              </h3>
+              <p className="text-gray-400 mb-6">
+                Fill out our quick form and we&apos;ll get back to you ASAP.
+              </p>
+              <a
+                href="https://api.veroclicks.com/widget/form/gnflYPAziSkpumPaJ7aq"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-md text-lg font-extrabold uppercase tracking-wide transition-all shadow-lg"
+                style={{
+                  backgroundColor: colors.primary,
+                  color: colors.textOnDark,
+                }}
+              >
+                Request Service →
+              </a>
+            </div>
           </div>
 
         </div>
