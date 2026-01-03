@@ -1,144 +1,189 @@
 import Image from "next/image";
+import aboutConfig from "./aboutConfig";
 
 export const metadata = {
-  title: "About Us | VeroClicks",
-  description: "Learn why contractors trust VeroClicks for websites, automation, and growth.",
+  title: aboutConfig.meta.title,
+  description: aboutConfig.meta.description,
 };
 
 export default function AboutPage() {
+  const config = aboutConfig;
+
   return (
     <div className="bg-white text-black">
-
-      {/* HERO SECTION */}
-      <section className="max-w-6xl mx-auto px-6 py-10 md:py-18">
+      {/* ================= HERO ================= */}
+      <section className="max-w-6xl mx-auto px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          
           <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-              We Partner With <br />
-              Contractors & <br />
-              Trade Workers
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+              {config.hero.headline.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < config.hero.headline.length - 1 && <br />}
+                </span>
+              ))}
             </h1>
 
-            <p className="text-gray-600 font-medium mb-6">
-              Our business only works when yours thrives. Contractors trust us to
-              transform their marketing, websites, and automation systems for real growth.
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+              {config.hero.subheadline}
             </p>
 
-            <a 
-              href="/book"
-              className="px-6 py-3 bg-(--brand) text-white rounded-lg font-semibold hover:bg-(--brand-dark) transition-all"
-            >
-              Contact Us Today
-            </a>
+            {config.hero.ctaText && config.hero.ctaLink && (
+              <a
+                href={config.hero.ctaLink}
+                className="inline-block px-8 py-4 bg-(--brand) text-white rounded-xl font-semibold hover:opacity-90 transition-all"
+              >
+                {config.hero.ctaText}
+              </a>
+            )}
           </div>
 
-          <div className="w-full max-w-sm mx-auto rounded-xl overflow-hidden">
-            <Image
-                src="/Images/CEO.png"
-                alt="Founder of VeroClicks"
+          <div className="relative">
+            <div className="absolute -inset-4 bg-(--brand)/10 rounded-3xl -z-10" />
+            <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-xl">
+              <Image
+                src={config.hero.image.src}
+                alt={config.hero.image.alt}
                 width={500}
                 height={600}
-                className="object-cover rounded-xl"
+                className="object-cover w-full h-auto"
                 priority
-            />
+              />
             </div>
-
-        </div>
-      </section>
-
-      {/* BADGES + STATS */}
-      <section className="px-6 max-w-6xl mx-auto mb-24">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold mb-8">You are in great hands!</h2>
-
-          <div className="grid md:grid-cols-5 gap-8 bg-(--brand-light)/20 p-8 rounded-2xl shadow">
-            <Stat number="35+" label="Projects Completed" />
-            <Stat number="24+" label="5-Star Reviews" />
-            <Stat number="1 Years" label="In Business" />
-            <Stat number="74%" label="Avg Client Growth" />
-            <Stat number="4100+" label="Leads Generated" />
           </div>
         </div>
       </section>
 
-      {/* VALUES SECTION */}
-      <section className="px-6 max-w-6xl mx-auto pb-8">
-        <h2 className="text-4xl font-extrabold text-center mb-12">
-          We Are Precise In Business <br />
-          And Purposeful In Our Work
+      {/* ================= STATS ================= */}
+      {config.stats && config.stats.items.length > 0 && (
+        <section className="px-6 max-w-6xl mx-auto mb-24">
+          <h2 className="text-3xl font-extrabold text-center mb-10">
+            {config.stats.sectionTitle}
+          </h2>
+
+          <div
+            className="grid gap-6 p-8 rounded-3xl bg-gradient-to-br from-(--brand)/5 to-(--brand)/10 border border-(--brand)/10"
+            style={{
+              gridTemplateColumns: `repeat(${Math.min(config.stats.items.length, 5)}, 1fr)`,
+            }}
+          >
+            {config.stats.items.map((stat, index) => (
+              <div key={index} className="text-center py-4">
+                <p className="text-4xl md:text-5xl font-extrabold text-(--brand) mb-2">
+                  {stat.number}
+                </p>
+                <p className="text-sm text-gray-600 font-medium">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ================= STORY (Optional) ================= */}
+      {config.story && config.story.paragraphs.length > 0 && (
+        <section className="px-6 max-w-4xl mx-auto mb-24">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">
+            {config.story.sectionTitle}
+          </h2>
+
+          <div className="space-y-6">
+            {config.story.paragraphs.map((paragraph, index) => (
+              <p
+                key={index}
+                className="text-gray-600 text-lg leading-relaxed"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ================= VALUES ================= */}
+      <section className="px-6 max-w-6xl mx-auto pb-24">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-16">
+          {config.values.sectionTitle.map((line, i) => (
+            <span key={i}>
+              {line}
+              {i < config.values.sectionTitle.length - 1 && <br />}
+            </span>
+          ))}
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-16">
-
-          {/* LEFT VALUES */}
-          <div className="space-y-12">
-
-            <Value 
-              number="1"
-              title="Transparent & Passionate"
-              text="We genuinely care about our clients and the work we produce. Your success is our mission."
-            />
-
-            <Value 
-              number="2"
-              title="Integrity"
-              text="We maintain standards that reflect only the best — both for your business and ours."
-            />
-          </div>
-
-          {/* RIGHT VALUES */}
-          <div className="space-y-12">
-
-            <Value 
-              number="3"
-              title="Partnership"
-              text="We don't treat you like a client — we treat you like a partner. We only win when you win."
-            />
-
-            <Value 
-              number="4"
-              title="Adaptive"
-              text="Markets change. We help your business adapt with data-driven strategy and flexible systems."
-            />
-          </div>
-
-        </div>
-
-        {/* QUOTE */}
-        <div className="mt-20 bg-(--brand-light)/30 p-10 rounded-2xl text-center shadow">
-          <p className="text-xl italic text-gray-800 mb-4">
-            “The only way to grow a business is to work ON your business, not just IN it —
-            and that's what we help you do.”
-          </p>
-          <p className="font-bold text-lg">— Yusuf Semo, Founder of VeroClicks</p>
+        <div className="grid md:grid-cols-2 gap-8">
+          {config.values.items.map((value, index) => (
+            <div
+              key={index}
+              className="flex gap-5 p-6 rounded-2xl bg-gray-50 hover:bg-(--brand)/5 transition-colors"
+            >
+              <div className="flex-shrink-0 w-12 h-12 bg-(--brand) text-white rounded-xl flex items-center justify-center font-bold text-lg">
+                {index + 1}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {value.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-    </div>
-  );
-}
+      {/* ================= TEAM (Optional) ================= */}
+      {config.team && config.team.members.length > 0 && (
+        <section className="px-6 max-w-6xl mx-auto pb-24">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12">
+            {config.team.sectionTitle}
+          </h2>
 
-/* Reusable Components */
-function Stat({ number, label }) {
-  return (
-    <div className="text-center">
-      <p className="text-3xl font-extrabold text-(--brand)">{number}</p>
-      <p className="text-sm text-gray-700">{label}</p>
-    </div>
-  );
-}
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {config.team.members.map((member, index) => (
+              <div
+                key={index}
+                className="text-center p-6 rounded-2xl bg-gray-50 hover:shadow-lg transition-shadow"
+              >
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    width={128}
+                    height={128}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <h3 className="text-xl font-bold">{member.name}</h3>
+                <p className="text-(--brand) font-medium text-sm mb-2">
+                  {member.role}
+                </p>
+                {member.bio && (
+                  <p className="text-gray-600 text-sm">{member.bio}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
-function Value({ number, title, text }) {
-  return (
-    <div className="flex gap-4 items-start">
-      <div className="text-(--brand) border-2 border-(--brand) h-10 w-10 rounded-full flex items-center justify-center font-bold">
-        {number}
-      </div>
-      <div>
-        <h3 className="text-xl font-bold mb-1">{title}</h3>
-        <p className="text-gray-600">{text}</p>
-      </div>
+      {/* ================= QUOTE ================= */}
+      {config.quote && (
+        <section className="px-6 max-w-4xl mx-auto pb-24">
+          <div className="relative p-10 md:p-14 rounded-3xl bg-gradient-to-br from-(--brand) to-(--brand-dark) text-white text-center">
+            <div className="absolute top-6 left-8 text-6xl opacity-20">
+              &quot;
+            </div>
+            <p className="text-xl md:text-2xl italic mb-6 leading-relaxed relative z-10">
+              {config.quote.text}
+            </p>
+            <div>
+              <p className="font-bold text-lg">{config.quote.author}</p>
+              {config.quote.role && (
+                <p className="text-white/70 text-sm">{config.quote.role}</p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
