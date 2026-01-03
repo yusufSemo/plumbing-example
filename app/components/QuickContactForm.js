@@ -73,11 +73,24 @@ export default function ServiceInquiry() {
 
           {/* RIGHT — IFRAME ONLY */}
           <div>
-            <iframe
-              src="https://api.veroclicks.com/widget/form/gnflYPAziSkpumPaJ7aq"
-              className="w-full h-[666px] rounded-lg border-0"
-              title="Website Form"
-            />
+           <iframe
+    src="https://api.veroclicks.com/widget/form/gnflYPAziSkpumPaJ7aq"
+    style={{ width: "100%", height: "770px", border: "none" }}
+    id="inline-gnflYPAziSkpumPaJ7aq" 
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="activateOnVisit"
+    data-activation-value="1"
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Website Form"
+    data-height="undefined"
+    data-layout-iframe-id="inline-gnflYPAziSkpumPaJ7aq"
+    data-form-id="gnflYPAziSkpumPaJ7aq"
+    title="Website Form"
+        />
+
           </div>
 
         </div>
