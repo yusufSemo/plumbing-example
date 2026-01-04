@@ -1,121 +1,211 @@
-export const metadata = {
-  title: "Contact | VeroClicks",
-  description: "Get in touch with VeroClicks. Call us, message us, or schedule a demo.",
-};
+"use client";
+
+import { useState } from "react";
+import { siteConfig } from "@/app/config/siteConfig";
+import contactConfig from "./contactConfig";
 
 export default function ContactPage() {
+  const { branding, business } = siteConfig;
+  const { colors } = branding;
+  const config = contactConfig;
+
+  const [formData, setFormData] = useState({});
+  const [consent, setConsent] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO: Hook up to your form handler / API
+    console.log("Form submitted:", formData);
+    setSubmitted(true);
+  };
+
   return (
     <div className="bg-white text-black">
+      {/* ================= HOURS + FORM ================= */}
+      <section className="py-20 px-6" style={{ backgroundColor: colors.dark }}>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+          {/* LEFT — HOURS */}
+          <div className="text-white">
+            <h2
+              className="text-3xl font-extrabold mb-8"
+              style={{
+                textDecoration: "underline",
+                textUnderlineOffset: "5px",
+                textDecorationThickness: "4px",
+                textDecorationColor: colors.primary,
+              }}
+            >
+              {config.hours.sectionTitle}
+            </h2>
 
-      {/* HERO SECTION */}
-      <section className="py-20 text-center">
-        <h1 className="text-5xl font-extrabold mb-4">Contact Us</h1>
-        <p className="text-gray-600 text-lg max-w-xl mx-auto">
-          Whether you have questions about our systems, pricing, or want to get started — 
-          we&apos;re here to help contractors grow.
+            <div className="space-y-4">
+              {config.hours.schedule.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between items-center py-3 border-b border-gray-700"
+                >
+                  <span className="font-medium">{item.days}</span>
+                  <span className="text-gray-300">{item.hours}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 p-6 rounded-xl" style={{ backgroundColor: "#1f1f1f" }}>
+              <p className="text-gray-300 text-sm">
+                <strong className="text-white">After hours?</strong> Leave us a
+                message and we&apos;ll get back to you first thing next business
+                day.
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT — FORM */}
+          <div
+            className="rounded-xl shadow-2xl p-8"
+            style={{ backgroundColor: "#1f1f1f" }}
+          >
+            <h3 className="text-2xl font-extrabold text-white mb-2">
+              {config.form.sectionTitle}
+            </h3>
+            <p className="text-gray-400 mb-6">{config.form.subheadline}</p>
+
+            {submitted ? (
+              <div className="text-center py-12">
+                <div className="text-5xl mb-4">✅</div>
+                <p className="text-white text-xl font-bold">
+                  {config.form.successMessage}
+                </p>
+              </div>
+            ) : (
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                {config.form.fields.map((field) =>
+                  field.type === "textarea" ? (
+                    <textarea
+                      key={field.name}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                      rows={field.rows || 4}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-md bg-white text-black text-base font-medium focus:outline-none focus:ring-2"
+                      style={{ outlineColor: colors.primary }}
+                    />
+                  ) : (
+                    <input
+                      key={field.name}
+                      type={field.type}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      required={field.required}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-md bg-white text-black text-base font-medium focus:outline-none focus:ring-2"
+                      style={{ outlineColor: colors.primary }}
+                    />
+                  )
+                )}
+
+                {/* CONSENT */}
+                <div className="flex items-start gap-3 text-sm text-gray-300">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-1"
+                  />
+                  <p>
+                    {config.form.consentText}{" "}
+                    <a
+                      href={config.form.privacyLink}
+                      className="underline"
+                      style={{ color: colors.primary }}
+                    >
+                      Privacy Policy
+                    </a>
+                  </p>
+                </div>
+
+                {/* SUBMIT */}
+                <button
+                  type="submit"
+                  className="w-full mt-2 px-6 py-4 rounded-md text-lg font-extrabold uppercase tracking-wide transition-all shadow-lg hover:scale-[1.02]"
+                  style={{
+                    backgroundColor: colors.primary,
+                    color: colors.textOnDark,
+                  }}
+                >
+                  {config.form.submitText}
+                </button>
+              </form>
+            )}
+
+            <p className="text-xs text-gray-500 mt-4 text-center">
+              No spam. No pressure. Just honest help from {business.name}.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= HERO ================= */}
+      <section className="py-20 text-center px-6" style={{ backgroundColor: colors.dark }}>
+        <h1
+          className="text-4xl md:text-5xl font-extrabold mb-4"
+          style={{ color: colors.primary }}
+        >
+          {config.hero.headline}
+        </h1>
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+          {config.hero.subheadline}
         </p>
       </section>
 
-      {/* INFO BLOCK */}
-      <section className="pt-8 pb-16">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-10 text-center">
-
-          {/* PHONE */}
-          <div className="flex flex-col items-center">
-            <div className="p-4 rounded-full bg-(--brand-light) text-(--brand) mb-4">
-              <span className="text-3xl">📞</span>
-            </div>
-            <h3 className="text-xl font-bold mb-1">Call Us</h3>
-            <p className="text-gray-600">904-410-4681</p>
-          </div>
-
-          {/* EMAIL SUPPORT */}
-            <div className="flex flex-col items-center">
-            <div className="p-4 rounded-full bg-(--brand-light) text-(--brand) mb-4">
-                <span className="text-3xl">📧</span>
-            </div>
-            <h3 className="text-xl font-bold mb-1">Email Support</h3>
-            <p className="text-gray-600">yusuf@veroclicks.com</p>
-            <p className="text-gray-600">Open 24/7 — Always here to help</p>
-            </div>
-
-
-          {/* LOCATION */}
-          <div className="flex flex-col items-center">
-            <div className="p-4 rounded-full bg-(--brand-light) text-(--brand) mb-4">
-              <span className="text-3xl">📍</span>
-            </div>
-            <h3 className="text-xl font-bold mb-1">Nationwide</h3>
-            <p className="text-gray-600">Serving contractors across the U.S.</p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* CONTACT FORM */}
-      <section className="py-20 bg-(--brand-light)/20">
-        <div className="max-w-xl mx-auto text-center">
-
-          <h2 className="text-3xl font-extrabold mb-6">
-            Send Us a Message
-          </h2>
-
-          <p className="text-gray-600 mb-10">
-            Prefer to message? Fill out the form below and we&apos;ll get back to you shortly.
-          </p>
-
-          <form className="space-y-6 text-left">
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">Your Name</label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 border rounded-xl focus:ring-(--brand) focus:border-(--brand)"
-                placeholder="John Contractor"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">Email</label>
-              <input
-                type="email"
-                className="w-full px-4 py-3 border rounded-xl focus:ring-(--brand) focus:border-(--brand)"
-                placeholder="you@example.com"
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 font-medium mb-1">Message</label>
-              <textarea
-                className="w-full px-4 py-3 border rounded-xl h-32 focus:ring-(--brand) focus:border-(--brand)"
-                placeholder="How can we help your business?"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-(--brand) text-white py-3 rounded-xl font-semibold hover:bg-(--brand-dark) transition"
+      {/* ================= CONTACT METHODS ================= */}
+      <section className="pb-16 px-6" style={{ backgroundColor: colors.dark }}>
+        <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-8">
+          {config.contactMethods.map((method, index) => (
+            <a
+              key={index}
+              href={method.link}
+              className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 hover:shadow-lg transition-shadow w-full md:w-[calc(33.333%-1.5rem)] min-w-[250px] max-w-[350px]"
             >
-              Send Message
-            </button>
-
-          </form>
+              <div
+                className="p-4 rounded-full mb-4"
+                style={{ backgroundColor: `${colors.primary}20` }}
+              >
+                <span className="text-3xl">{method.icon}</span>
+              </div>
+              <h3 className="text-xl font-bold mb-2">{method.title}</h3>
+              {method.lines.map((line, i) => (
+                <p key={i} className="text-gray-600">
+                  {line}
+                </p>
+              ))}
+            </a>
+          ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 text-center">
-        <h2 className="text-3xl font-bold mb-4">Want to talk instead?</h2>
-        <p className="text-gray-600 mb-6">Book a quick 30-minute discovery call. No pressure, just clarity.</p>
-
+      
+      {/* ================= CTA ================= */}
+      <section className="py-20 text-center px-6" style={{ backgroundColor: colors.dark }}>
+        <h2 className="text-3xl font-extrabold mb-4" style={{ color: colors.primary }}>{config.cta.headline}</h2>
+        <p className="text-gray-300 mb-8">{config.cta.subheadline}</p>
         <a
-          href="/book"
-          className="inline-block bg-(--brand) text-white py-3 px-6 rounded-xl font-semibold hover:bg-(--brand-dark) transition"
+          href={config.cta.buttonLink}
+          className="inline-block px-8 py-4 rounded-xl text-lg font-bold uppercase tracking-wide transition-all hover:scale-105"
+          style={{
+            backgroundColor: colors.primary,
+            color: colors.textOnDark,
+          }}
         >
-          Book a Call
+          {config.cta.buttonText}
         </a>
       </section>
-
     </div>
   );
 }

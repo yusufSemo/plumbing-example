@@ -39,7 +39,6 @@ export const siteConfig = {
   header: {
     links: [
       { label: "Services", href: "/services" },
-      { label: "Reviews", href: "/reviews" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
     ],
