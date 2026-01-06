@@ -77,7 +77,7 @@ const servicesConfig = {
     items: [
       { name: "Japanese Imports", img: "japanese.jpg" },
       { name: "European Vehicles", img: "european.jpg" },
-      { name: "SUVs & Crossovers", img: "suv.jpg" },
+      { name: "SUVs & Crossovers", img: "SUV.jpg" },
     ],
   },
 
