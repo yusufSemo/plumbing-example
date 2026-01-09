@@ -3,10 +3,30 @@
 import Image from "next/image";
 import { placeholderReviews } from "./reviews.placeholder";
 import { siteConfig } from "@/app/config/siteConfig";
+import { useEffect } from "react";
 
 export default function ReviewsSection() {
   const { branding } = siteConfig;
   const { colors } = branding;
+
+  useEffect(() => {
+    const existingScript = document.querySelector(
+      'script[src="https://api.veroclicks.com/js/form_embed.js"]'
+    );
+    const script = existingScript || document.createElement("script");
+
+    if (!existingScript) {
+      script.src = "https://api.veroclicks.com/js/form_embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
 
   return (
     <section
@@ -19,7 +39,7 @@ export default function ReviewsSection() {
         </h2>
 
         <p className="text-center text-gray-300 mb-12">
-          Real feedback from local customers we’ve helped.
+          Real feedback from local customers we&apos;ve helped.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -62,6 +82,17 @@ export default function ReviewsSection() {
           Testimonials shown are from local customers and reflect individual
           experiences.
         </p>
+
+        {/* Survey Widget */}
+        <div className="mt-12">
+          <iframe
+            src="https://api.veroclicks.com/widget/survey/oD3v8LkuWbopQR5rsiVA"
+            style={{ border: "none", width: "100%" }}
+            scrolling="no"
+            id="oD3v8LkuWbopQR5rsiVA"
+            title="Customer Survey"
+          />
+        </div>
       </div>
     </section>
   );
