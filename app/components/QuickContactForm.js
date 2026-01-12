@@ -1,193 +1,194 @@
+// app/components/ServiceInquiry.js
 "use client";
 
+import { useState } from "react";
 import { siteConfig } from "@/app/config/siteConfig";
 
 export default function ServiceInquiry() {
-  const { branding, business } = siteConfig;
-  const { colors } = branding;
+  const { business } = siteConfig;
+  const [submitted, setSubmitted] = useState(false);
 
   const services = [
-    "Brake Repair",
-    "Check Engine Light",
-    "Battery Replacement",
-    "Oil Change",
-    "Suspension & Steering",
-    "General Diagnostics",
+    { name: "Leak Detection & Repair", icon: "💧" },
+    { name: "Drain Cleaning", icon: "🚿" },
+    { name: "Water Heater Repair & Installation", icon: "🔥" },
+    { name: "Toilet & Faucet Repair", icon: "🚽" },
+    { name: "Sewer Line Inspection & Repair", icon: "🔧" },
+    { name: "24/7 Emergency Plumbing Services", icon: "🚨" },
   ];
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+
+    const payload = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      service: formData.get("service"),
+      message: formData.get("message"),
+      source: "service-inquiry-form",
+      timestamp: new Date().toISOString(),
+    };
+
+    /**
+     * 🔗 WEBHOOK INTEGRATION (LATER)
+     *
+     * Example:
+     *
+     * fetch("https://your-webhook-url.com", {
+     *   method: "POST",
+     *   headers: { "Content-Type": "application/json" },
+     *   body: JSON.stringify(payload),
+     * });
+     *
+     * This can be:
+     * - LeadConnector
+     * - Zapier
+     * - Make.com
+     * - Custom backend
+     */
+
+    console.log("Form payload (not sent):", payload);
+
+    setSubmitted(true);
+  }
+
   return (
-    <section className="relative py-20" style={{ backgroundColor: colors.dark }}>
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+    <section
+      aria-labelledby="plumbing-services-heading"
+      className="relative py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+    >
+      <div className="relative mx-auto max-w-6xl px-6">
 
-          {/* LEFT — SERVICES LIST */}
-          <div className="order-2 md:order-1 text-gray-200">
-            <h2 className="text-3xl font-extrabold mb-6" style={{
-              textDecoration: "underline",
-              textUnderlineOffset: "5px",
-              textDecorationThickness: "4px",
-              textDecorationColor: colors.primary,
-            }}>
-              We Can Help With:
-            </h2>
+        {/* HEADER */}
+        <header className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 bg-sky-500/10 text-sky-400 rounded-full text-sm font-medium mb-4">
+            Professional Plumbing Services
+          </span>
 
-            <ul className="space-y-4">
+          <h2
+            id="plumbing-services-heading"
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
+          >
+            Reliable <span className="text-sky-400">Plumbing Services</span> You Can Trust
+          </h2>
+
+          <p className="text-slate-400 max-w-2xl mx-auto">
+            From emergency plumbing repairs to water heater installations, our licensed plumbers
+            deliver fast, professional solutions.
+          </p>
+        </header>
+
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+
+          {/* SERVICES */}
+          <div>
+            <ul className="grid sm:grid-cols-2 gap-4">
               {services.map((service) => (
                 <li
-                  key={service}
-                  className="flex items-start gap-3 text-lg font-medium"
+                  key={service.name}
+                  className="p-5 rounded-2xl bg-white/5 border border-white/10"
                 >
-                  <span
-                    className="mt-1 h-6 w-6 flex items-center justify-center rounded-full text-green-600 text-sm font-bold"
-                    style={{ backgroundColor: colors.primary }}
-                  >
-                    ✓
+                  <span className="flex items-center gap-4 text-white font-medium">
+                    <span className="text-2xl">{service.icon}</span>
+                    {service.name}
                   </span>
-                  <span>{service}</span>
                 </li>
               ))}
             </ul>
 
-            <p className="mt-6 text-sm text-gray-400">
-              Not sure what’s wrong? No problem — just tell us what you’re
-              experiencing.
-            </p>
-
-            {/* VIEW ALL SERVICES CTA */}
-            <a
-              href="/services"
-              className="
-                inline-flex items-center gap-2
-                mt-8 px-6 py-4
-                rounded-md
-                text-lg font-extrabold
-                uppercase tracking-wide
-                transition-all shadow-lg
-              "
-              style={{
-                backgroundColor: colors.primary,
-                color: colors.textOnDark,
-              }}
-            >
-              View All Services →
-            </a>
+            <div className="mt-10 text-slate-400 text-sm">
+              ✔ Licensed & Insured &nbsp; • &nbsp; ✔ 24/7 Emergency &nbsp; • &nbsp; ✔ Free Estimates
+            </div>
           </div>
 
-          {/* RIGHT — CONTACT FORM */}
-          <div className="order-1 md:order-2">
-            <div
-              className="rounded-xl shadow-2xl p-8 text-white"
-              style={{ backgroundColor: "#1f1f1f" }}
-            >
-              <h3 className="text-3xl font-extrabold mb-2">
-                Get a{" "}
-                <span style={{ color: colors.primary }}>
-                  Quick Quote
-                </span>
-              </h3>
+          {/* FORM / THANK YOU */}
+          <div>
+            <div className="rounded-3xl bg-white p-8 shadow-2xl">
 
-              <p className="text-base text-gray-300 mb-6">
-                Tell us what’s going on and we’ll get back to you fast.
-              </p>
+              {!submitted ? (
+                <>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                    Request a Free Plumbing Estimate
+                  </h3>
 
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert("Form submitted");
-                }}
-              >
-                <input
-                  type="text"
-                  required
-                  placeholder="Your Name"
-                  className="
-                    w-full px-4 py-3
-                    rounded-md bg-white text-black
-                    text-base font-medium
-                    focus:outline-none focus:ring-2
-                  "
-                  style={{ outlineColor: colors.primary }}
-                />
+                  <p className="text-slate-500 text-sm mb-6">
+                    We’ll respond within 30 minutes.
+                  </p>
 
-                <input
-                  type="tel"
-                  required
-                  placeholder="Phone Number"
-                  className="
-                    w-full px-4 py-3
-                    rounded-md bg-white text-black
-                    text-base font-medium
-                    focus:outline-none focus:ring-2
-                  "
-                  style={{ outlineColor: colors.primary }}
-                />
+                  <form className="space-y-4" onSubmit={handleSubmit}>
 
-                <textarea
-                  placeholder="Brief description (optional)"
-                  rows={3}
-                  className="
-                    w-full px-4 py-3
-                    rounded-md bg-white text-black
-                    text-base font-medium
-                    focus:outline-none focus:ring-2
-                  "
-                  style={{ outlineColor: colors.primary }}
-                />
+                    <input
+                      name="name"
+                      type="text"
+                      required
+                      placeholder="Your Name"
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border"
+                    />
 
-                {/* CONSENT CHECKBOX (REQUIRED) */}
-                <div className="flex items-start gap-3 text-sm text-gray-300">
-                  <input
-                    type="checkbox"
-                    required
-                    className="mt-1"
-                  />
-                  <p>
-                    I agree to receive calls and text messages from{" "}
-                    <strong>{business.name}</strong> regarding my request.
-                    Message & data rates may apply. Reply STOP to opt out.{" "}
-                    <a
-                      href="/privacy-policy"
-                      target="_blank"
-                      className="underline"
-                      style={{ color: colors.primary }}
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      placeholder="Phone Number"
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border"
+                    />
+
+                    <select
+                      name="service"
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border"
+                      defaultValue=""
                     >
-                      Privacy Policy
-                    </a>
+                      <option value="" disabled>Select Service Needed</option>
+                      <option>Leak Detection & Repair</option>
+                      <option>Drain Cleaning</option>
+                      <option>Water Heater Repair</option>
+                      <option>Toilet & Faucet Repair</option>
+                      <option>Sewer Line Services</option>
+                      <option>Emergency Plumbing</option>
+                      <option>Other</option>
+                    </select>
+
+                    <textarea
+                      name="message"
+                      rows={3}
+                      placeholder="Describe the issue (optional)"
+                      className="w-full px-4 py-3.5 rounded-xl bg-slate-50 border resize-none"
+                    />
+
+                    <button
+                      type="submit"
+                      className="w-full py-4 rounded-xl bg-sky-500 text-white font-semibold text-lg"
+                    >
+                      Get Free Quote
+                    </button>
+                  </form>
+                </>
+              ) : (
+                /* THANK YOU STATE */
+                <div className="text-center py-12">
+                  <div className="text-5xl mb-4">✅</div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                    Thank You!
+                  </h3>
+                  <p className="text-slate-500">
+                    Your request has been received. A licensed plumber will contact you shortly.
                   </p>
                 </div>
+              )}
 
-                {/* PRIMARY CTA */}
-                <button
-                  type="submit"
-                  className="
-                    w-full mt-2
-                    px-6 py-4
-                    rounded-md
-                    text-lg font-extrabold
-                    uppercase tracking-wide
-                    transition-all shadow-lg
-                  "
-                  style={{
-                    backgroundColor: colors.primary,
-                    color: colors.textOnDark,
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.transform = "scale(1.03)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.transform = "scale(1)")
-                  }
+              {/* CALL OPTION */}
+              <div className="mt-6 pt-6 border-t text-center">
+                <p className="text-slate-500 text-sm mb-2">Prefer to call?</p>
+                <a
+                  href={`tel:${business.phone.replace(/[^0-9]/g, "")}`}
+                  className="font-semibold text-slate-900 hover:text-sky-500"
                 >
-                  Request a Quote
-                </button>
-              </form>
+                  {business.phone}
+                </a>
+              </div>
 
-
-              <p className="text-xs text-gray-400 mt-4">
-                No spam. No pressure. Just honest help from{" "}
-                {business.name}
-              </p>
             </div>
           </div>
 

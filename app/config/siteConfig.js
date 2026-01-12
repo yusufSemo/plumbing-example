@@ -1,50 +1,52 @@
 // src/config/siteConfig.js
 export const siteConfig = {
   seo: {
-    title: "Flip's Auto Repair | Local Auto Repair in North Richland Hills, TX",
+    title: "ABC Plumbing | Local Plumbing Services in North Richland Hills, TX",
     description:
-      "Flip's Auto Repair provides honest, affordable auto repair from a trusted local garage in North Richland Hills, TX.",
+      "ABC Plumbing provides honest, affordable plumbing services from a trusted local team in North Richland Hills, TX.",
   },
 
   business: {
-    name: "FLIPS AUTO REPAIR",
+    name: "ABC Plumbing",
     phone: "(817) 555-0192",
-    email: "flipsautorepair@gmail.com",
+    email: "info@abcplumbing.com",
     location: "North Richland Hills, TX",
   },
 
   branding: {
     logo: {
       src: "/Images/logo1.png",
-      alt: "Flip's Auto Repair logo",
+      alt: "ABC Plumbing logo",
     },
 
     colors: {
       /* Core brand */
-      primary: "#CC5A32",      // orange (CTAs)
-      dark: "#3B3B3B",         // navbar / page bg
-      light: "#BEBEBE",        // light sections
+      primary: "#0EA5E9",      // sky blue (CTAs)
+      dark: "#0F172A",         // dark slate for footer only
+      light: "#FFFFFF",        // white background
 
       /* Text */
-      textOnDark: "#E5E7EB",   // gray-200
-      textMuted: "#BDBDBD",    // gray-400
-      textOnLight: "#111827",  // slate-900
+      textOnDark: "#FFFFFF",   // white text on dark backgrounds
+      textMuted: "#64748B",    // slate-500
+      textOnLight: "#0F172A",  // dark text on light backgrounds
     },
 
     navbar: {
-      blur: true, // purely behavioral, not color
+      blur: true,
+      background: "#FFFFFF",   // white navbar
     },
   },
 
   header: {
     links: [
       { label: "Services", href: "/services" },
+      { label: "Blog", href: "/blog" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" },
     ],
     cta: {
       label: "Call Now",
-      href: "tel:8173663084",
+      href: "tel:8175550192",
     },
   },
 

@@ -5,7 +5,7 @@ import QuickContactForm from "@/app/components/QuickContactForm";
 import WhyChooseUs from "@/app/components/WhyChooseUs";
 import ReviewsSection from "@/app/components/ReviewsSection";
 import ServiceArea from "@/app/components/ServiceArea";
-
+import Leavereview from "@/app/components/Leavereview";
 
 export default function Home() {
   return (
@@ -15,6 +15,7 @@ export default function Home() {
     <QuickContactForm />
     <WhyChooseUs />
     <ReviewsSection />
+    <Leavereview />
     <ServiceArea />
 
 

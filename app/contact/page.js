@@ -25,12 +25,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-white text-black">
+    <div className="bg-white text-slate-900">
       {/* ================= HOURS + FORM ================= */}
-      <section className="py-20 px-6" style={{ backgroundColor: colors.dark }}>
+      <section className="py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
           {/* LEFT — HOURS */}
-          <div className="text-white">
+          <div className="text-slate-900">
             <h2
               className="text-3xl font-extrabold mb-8"
               style={{
@@ -47,17 +47,17 @@ export default function ContactPage() {
               {config.hours.schedule.map((item, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center py-3 border-b border-gray-700"
+                  className="flex justify-between items-center py-3 border-b border-slate-200"
                 >
                   <span className="font-medium">{item.days}</span>
-                  <span className="text-gray-300">{item.hours}</span>
+                  <span className="text-slate-600">{item.hours}</span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-10 p-6 rounded-xl" style={{ backgroundColor: "#1f1f1f" }}>
-              <p className="text-gray-300 text-sm">
-                <strong className="text-white">After hours?</strong> Leave us a
+            <div className="mt-10 p-6 rounded-xl bg-slate-50 border border-slate-200">
+              <p className="text-slate-600 text-sm">
+                <strong className="text-slate-900">After hours?</strong> Leave us a
                 message and we&apos;ll get back to you first thing next business
                 day.
               </p>
@@ -65,19 +65,16 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT — FORM */}
-          <div
-            className="rounded-xl shadow-2xl p-8"
-            style={{ backgroundColor: "#1f1f1f" }}
-          >
-            <h3 className="text-2xl font-extrabold text-white mb-2">
+          <div className="rounded-xl shadow-xl p-8 bg-gray-200 border border-slate-200">
+            <h3 className="text-2xl font-extrabold text-slate-900 mb-2">
               {config.form.sectionTitle}
             </h3>
-            <p className="text-gray-400 mb-6">{config.form.subheadline}</p>
+            <p className="text-slate-600 mb-6">{config.form.subheadline}</p>
 
             {submitted ? (
               <div className="text-center py-12">
                 <div className="text-5xl mb-4">✅</div>
-                <p className="text-white text-xl font-bold">
+                <p className="text-slate-900 text-xl font-bold">
                   {config.form.successMessage}
                 </p>
               </div>
@@ -110,7 +107,7 @@ export default function ContactPage() {
                 )}
 
                 {/* CONSENT */}
-                <div className="flex items-start gap-3 text-sm text-gray-300">
+                <div className="flex items-start gap-3 text-sm text-slate-600">
                   <input
                     type="checkbox"
                     required
@@ -144,7 +141,7 @@ export default function ContactPage() {
               </form>
             )}
 
-            <p className="text-xs text-gray-500 mt-4 text-center">
+            <p className="text-xs text-slate-500 mt-4 text-center">
               No spam. No pressure. Just honest help from {business.name}.
             </p>
           </div>
@@ -152,20 +149,20 @@ export default function ContactPage() {
       </section>
 
       {/* ================= HERO ================= */}
-      <section className="py-20 text-center px-6" style={{ backgroundColor: colors.dark }}>
+      <section className="py-20 text-center px-6 bg-white">
         <h1
           className="text-4xl md:text-5xl font-extrabold mb-4"
           style={{ color: colors.primary }}
         >
           {config.hero.headline}
         </h1>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+        <p className="text-slate-600 text-lg max-w-2xl mx-auto">
           {config.hero.subheadline}
         </p>
       </section>
 
       {/* ================= CONTACT METHODS ================= */}
-      <section className="pb-16 px-6" style={{ backgroundColor: colors.dark }}>
+      <section className="pb-16 px-6 bg-white">
         <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-8">
           {config.contactMethods.map((method, index) => (
             <a
@@ -181,7 +178,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-xl font-bold mb-2">{method.title}</h3>
               {method.lines.map((line, i) => (
-                <p key={i} className="text-gray-600">
+                <p key={i} className="text-slate-600">
                   {line}
                 </p>
               ))}
@@ -192,9 +189,9 @@ export default function ContactPage() {
 
       
       {/* ================= CTA ================= */}
-      <section className="py-20 text-center px-6" style={{ backgroundColor: colors.dark }}>
+      <section className="py-20 text-center px-6 bg-white">
         <h2 className="text-3xl font-extrabold mb-4" style={{ color: colors.primary }}>{config.cta.headline}</h2>
-        <p className="text-gray-300 mb-8">{config.cta.subheadline}</p>
+        <p className="text-slate-600 mb-8">{config.cta.subheadline}</p>
         <a
           href={config.cta.buttonLink}
           className="inline-block px-8 py-4 rounded-xl text-lg font-bold uppercase tracking-wide transition-all hover:scale-105"

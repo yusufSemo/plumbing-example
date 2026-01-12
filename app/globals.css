@@ -5,14 +5,20 @@ html, body {
   height: 100%;
   width: 100%;
   transition: background-color 0.4s ease;
-  color: black;
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  color: #0F172A;
+  background-color: #FFFFFF;
+  font-family: var(--font-poppins), Arial, sans-serif;
 }
 
 :root {
-  --brand: #CC5A32;
-  --brand-dark: #AB4927;
-  --brand-light: #FFE8B3;
+  --brand: #0EA5E9;
+  --brand-dark: #0284C7;
+  --brand-light: #E0F2FE;
+  --slate-900: #0F172A;
+  --slate-700: #334155;
+  --slate-500: #64748B;
+  --slate-200: #E2E8F0;
+  --slate-100: #F1F5F9;
 }
 
 /* Reset default margins */
@@ -21,11 +27,15 @@ body {
   padding: 0;
 }
 
-/* Remove dark mode behavior completely */
 :root {
   --font-geist-sans: var(--font-geist-sans);
   --font-geist-mono: var(--font-geist-mono);
+  --font-poppins: var(--font-poppins);
 }
+
+/* ===========================
+   Animations
+=========================== */
 
 @keyframes appear {
   from {
@@ -44,19 +54,18 @@ body {
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   opacity: 0;
-
   animation-timeline: view();
   animation-range: entry 0% cover 20%;
 }
+
 .will-animate {
   will-change: transform, opacity;
 }
 
-/* fade in animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -65,20 +74,7 @@ body {
 }
 
 .fade-in-bottom {
-  animation: fadeInUp 1.5s ease-out forwards;
-}
-
-
-.sky-gradient {
-  background: linear-gradient(to bottom, #0F52BA, #d9ebff);
-  background-size: 200% 200%;
-  animation: skyDrift 6s ease-in-out infinite;
-}
-
-@keyframes skyDrift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 50% 50%; }
-  100% { background-position: 0% 50%; }
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 @keyframes fadeSlideRight {
@@ -93,35 +89,69 @@ body {
 }
 
 .animate-line-1 {
-  /* Ensure transform works and set initial state */
   display: block; 
   opacity: 0; 
-  animation: fadeSlideRight 0.8s ease-in-out forwards;
+  animation: fadeSlideRight 0.8s ease-out forwards;
 }
 
 .animate-line-2 {
-  /* Ensure transform works and set initial state */
   display: block; 
   opacity: 0; 
-  animation: fadeSlideRight 0.8s ease-in-out forwards;
-  animation-delay: 0.25s;
+  animation: fadeSlideRight 0.8s ease-out forwards;
+  animation-delay: 0.15s;
 }
 
 /* ===========================
-   Underline and Text Animation (Stable Centered Growth)
+   Hero Animations
 =========================== */
 
-/* 1. Define the Text Fade-In and Scale Animation (No Change) */
-@keyframes text-scale-in {
-  0% { 
-    opacity: 0;
+@keyframes heroFade {
+  0% {
+    opacity: 0.7;
   }
-  100% { 
-    opacity: 1;
+  100% {
+    opacity: 0.5;
   }
 }
 
-/* 2. Define the Underline Animation (Animating WIDTH for Stability) */
+.animate-hero-fade {
+  animation: heroFade 1.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.animate-slide-up-delay-1 {
+  animation: slideUp 0.8s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-2 {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-slide-up-delay-3 {
+  animation: slideUp 0.8s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* ===========================
+   Underline Animation
+=========================== */
+
 @keyframes underline-grow {
   0% { 
     width: 0; 
@@ -131,54 +161,95 @@ body {
   }
 }
 
-/* 3. Apply the initial styles and animations to the text container */
 .animate-underline {
   display: inline-block;
   position: relative;
-  white-space: nowrap;
-  color: inherit;
-
-  /* REMOVE these */
-  /* width: fit-content; */
-  /* transform-origin: top left; */
-
-  animation: text-scale-in 1.2s ease-out forwards;
 }
 
-/* 4. Apply the Underline styles and animation to the :after pseudo-element (No change needed here) */
 .animate-underline::after {
   content: "";
   display: block;
-  
-  /* Positioning and Thickness */
   position: absolute; 
-  bottom: -0.5rem; /* Using the lowered value you requested */
-  
-  /* Ensures the final line is perfectly centered when it reaches 100% width */
+  bottom: -0.25rem;
   left: 0;
-  right: 0; 
-  margin: 0 auto;
-  
   width: 0; 
-  height: 5px; 
+  height: 4px; 
   background: var(--brand); 
   border-radius: 999px;
-  
-  transform: none; 
-  transform-origin: center;
-  
-  animation: underline-grow 0.8s ease-out forwards; 
+  animation: underline-grow 0.8s ease-out 0.4s forwards; 
 }
 
-@keyframes heroFade {
-  0% {
-    opacity: 1;
+/* ===========================
+   Button Styles
+=========================== */
+
+.btn-primary {
+  background-color: var(--brand);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(14, 165, 233, 0.4);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--slate-900);
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px solid var(--slate-200);
+}
+
+.btn-secondary:hover {
+  background-color: var(--slate-100);
+  border-color: var(--slate-300);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Gradient Background
+=========================== */
+
+.sky-gradient {
+  background: linear-gradient(135deg, #E0F2FE 0%, #FFFFFF 50%, #F0F9FF 100%);
+}
+
+/* ===========================
+   Navbar Shadow
+=========================== */
+
+.navbar-shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
   }
-  100% {
-    opacity: 0.4;
+  to {
+    transform: translateX(0);
   }
 }
 
-.animate-hero-fade {
-  animation: heroFade 2.0s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out forwards;
 }
