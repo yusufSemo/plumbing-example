@@ -1,111 +1,81 @@
 // ============================================================
 // ABOUT PAGE CONFIGURATION
 // ============================================================
-// Edit this file to customize your entire about page.
-// Works for any contractor or service-based business.
+// Plumbing-specific configuration for ABC Plumbing
 // ============================================================
 
 const aboutConfig = {
   // ============ META / SEO ============
   meta: {
-    title: "About Us | Flip's Auto Repair",
+    title: "About Us | ABC Plumbing",
     description:
-      "Family-owned auto repair shop serving the community for over 5 years. Honest work, fair prices, and mechanics you can trust.",
+      "ABC Plumbing is a trusted, locally owned plumbing company delivering honest pricing, fast response times, and reliable service for homes and businesses.",
   },
 
   // ============ HERO SECTION ============
   hero: {
-    headline: ["We Keep Your", "Vehicles Running", "Like New"],
+    headline: ["Reliable Plumbing,", "Honest Pricing,", "Done Right"],
     subheadline:
-      "Family-owned and operated since 2021. We treat every car like it's our own — because your trust is everything to us.",
-    ctaText: "Schedule Service",
-    ctaLink: "/book",
-    image: {
-      src: "/Images/owner.jpg",
-      alt: "Flip - Owner of Flip's Auto Repair",
-    },
+      "Family-owned and locally operated. From small leaks to emergency repairs, ABC Plumbing is committed to doing the job right the first time.",
+    ctaText: "Get a Quote",
+    ctaLink: "/quote",
   },
 
   // ============ STATS / BADGES ============
   stats: {
-    sectionTitle: "Trusted By Drivers Everywhere",
+    sectionTitle: "Trusted by Homeowners & Businesses",
     items: [
-      { number: "5+", label: "Years in Business" },
-      { number: "1,000+", label: "Vehicles Serviced" },
-      { number: "4.9", label: "Google Rating" },
-      { number: "98%", label: "Customer Retention" },
-      { number: "50+", label: "5-Star Reviews" },
+      { number: "10+", label: "Years of Experience" },
+      { number: "2,000+", label: "Jobs Completed" },
+      { number: "4.9★", label: "Customer Rating" },
+      { number: "24/7", label: "Emergency Service" },
+      { number: "100%", label: "Licensed & Insured" },
     ],
   },
 
   // ============ VALUES SECTION ============
   values: {
-    sectionTitle: ["Built on Trust,", "Driven by Quality"],
+    sectionTitle: ["Built on Trust,", "Backed by Experience"],
     items: [
       {
-        title: "Honest Diagnostics",
+        title: "Upfront, Honest Pricing",
         description:
-          "We tell you exactly what's wrong and what it'll cost — no surprises, no upsells, no pressure.",
+          "We explain the problem clearly and give you transparent pricing before any work begins — no hidden fees, no surprises.",
       },
       {
-        title: "Quality Parts",
+        title: "Quality Workmanship",
         description:
-          "We use OEM and high-quality aftermarket parts. Never cheap stuff that'll fail in 6 months.",
+          "Our plumbers use professional-grade materials and proven methods to ensure long-lasting repairs you can rely on.",
       },
       {
-        title: "Fair Pricing",
+        title: "Fast & Reliable Service",
         description:
-          "Dealership quality without dealership prices. We'll always give you options that fit your budget.",
+          "We show up on time, respect your property, and work efficiently so you can get back to your day with minimal disruption.",
       },
       {
-        title: "Complimentary Wash",
+        title: "Emergency Ready",
         description:
-          "With every service, we wash your car inside and out. A clean car is a happy car.",
+          "Plumbing issues don’t wait — and neither do we. Our team is available for urgent repairs when you need help the most.",
       },
     ],
   },
 
   // ============ QUOTE / TESTIMONIAL ============
   quote: {
-    text: "A car is more than just transportation — it's how you get to work, pick up your kids, and live your life. We never forget that responsibility.",
-    author: "Flip Morrison",
-    role: "Owner & Lead Technician",
+    text: "When plumbing problems happen, you need someone you can trust in your home. We take that responsibility seriously on every job.",
+    author: "ABC Plumbing",
+    role: "Owner & Licensed Master Plumber",
   },
 
-  // ============ TEAM SECTION (Optional) ============
-  // team: {
-  //   sectionTitle: "Meet the Team",
-  //   members: [
-  //     {
-  //       name: "Flip Morrison",
-  //       role: "Owner & Lead Technician",
-  //       image: "/Images/team/flip.jpg",
-  //       bio: "ASE Master Certified with 20+ years experience.",
-  //     },
-  //     {
-  //       name: "Jake Torres",
-  //       role: "Senior Mechanic",
-  //       image: "/Images/team/jake.jpg",
-  //       bio: "Specializes in European imports and diagnostics.",
-  //     },
-  //     {
-  //       name: "Maria Santos",
-  //       role: "Service Advisor",
-  //       image: "/Images/team/maria.jpg",
-  //       bio: "Your first point of contact. Fluent in English and Spanish.",
-  //     },
-  //   ],
-  // },
-
-  // ============ STORY SECTION (Optional) ============
+  // ============ STORY SECTION ============
   story: {
-  sectionTitle: "Our Story",
-  paragraphs: [
-    "Before Flip's Auto Repair, there were five years at BMW — starting as a technician and working up through the ranks. Promotions came, the skills sharpened, and the experience stacked up. But something didn't sit right: customers were being overcharged, upsold on repairs they didn't need, and treated like numbers on a service ticket.",
-    "That's when the decision was made to go independent. Same dealership-level expertise, but with fair prices and honest service. No corporate quotas. No pressure to sell unnecessary work. Just quality repairs from someone who actually gives a damn.",
-    "Flip's Auto Repair opened in 2021 with a simple promise: treat every car like it's your own, and every customer like a neighbor. That hasn't changed — and it never will.",
-  ],
-},
+    sectionTitle: "Our Story",
+    paragraphs: [
+      "ABC Plumbing was founded with a simple goal: provide dependable plumbing services without the headaches customers often experience — unclear pricing, rushed work, or unnecessary upsells.",
+      "After years in the plumbing industry, it became clear that homeowners deserved better. Better communication. Better workmanship. And a plumber who actually stands behind their work.",
+      "Today, ABC Plumbing proudly serves the local community with honest service, experienced technicians, and a commitment to doing things the right way. One job, one customer, one reputation at a time.",
+    ],
+  },
 };
 
 export default aboutConfig;

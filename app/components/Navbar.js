@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { siteConfig } from "../config/siteConfig";
@@ -48,9 +48,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isLightBackground = useMemo(() => {
-    if (typeof window === "undefined") return false;
+  const [isLightBackground, setIsLightBackground] = useState(false);
 
+  useEffect(() => {
     const parseRgb = (rgbString) => {
       const match = rgbString.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/i);
       if (!match) return null;
@@ -73,9 +73,12 @@ export default function Navbar() {
     const rgb =
       getBackgroundRgb(document.body) || getBackgroundRgb(document.documentElement);
 
-    if (!rgb) return false;
+    if (!rgb) {
+      setIsLightBackground(false);
+      return;
+    }
     const luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
-    return luminance > 0.7;
+    setIsLightBackground(luminance > 0.7);
   }, [pathname]);
 
   useEffect(() => {

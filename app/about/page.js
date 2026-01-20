@@ -1,4 +1,3 @@
-import Image from "next/image";
 import aboutConfig from "./aboutConfig";
 
 export const metadata = {
@@ -38,17 +37,13 @@ export default function AboutPage() {
             )}
           </div>
 
+          {/* Placeholder Image */}
           <div className="relative">
             <div className="absolute -inset-4 bg-(--brand)/10 rounded-3xl -z-10" />
             <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-xl">
-              <Image
-                src={config.hero.image.src}
-                alt={config.hero.image.alt}
-                width={500}
-                height={600}
-                className="object-cover w-full h-auto"
-                priority
-              />
+              <div className="flex items-center justify-center h-[380px] bg-gray-200 text-gray-500 text-sm font-medium">
+                Placeholder Image (Plumber at Work)
+              </div>
             </div>
           </div>
         </div>
@@ -64,7 +59,10 @@ export default function AboutPage() {
           <div
             className="grid gap-6 p-8 rounded-3xl bg-gradient-to-br from-(--brand)/5 to-(--brand)/10 border border-(--brand)/10"
             style={{
-              gridTemplateColumns: `repeat(${Math.min(config.stats.items.length, 5)}, 1fr)`,
+              gridTemplateColumns: `repeat(${Math.min(
+                config.stats.items.length,
+                5
+              )}, 1fr)`,
             }}
           >
             {config.stats.items.map((stat, index) => (
@@ -72,14 +70,16 @@ export default function AboutPage() {
                 <p className="text-4xl md:text-5xl font-extrabold text-(--brand) mb-2">
                   {stat.number}
                 </p>
-                <p className="text-sm text-gray-600 font-medium">{stat.label}</p>
+                <p className="text-sm text-gray-600 font-medium">
+                  {stat.label}
+                </p>
               </div>
             ))}
           </div>
         </section>
       )}
 
-      {/* ================= STORY (Optional) ================= */}
+      {/* ================= STORY ================= */}
       {config.story && config.story.paragraphs.length > 0 && (
         <section className="px-6 max-w-4xl mx-auto mb-24">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">
@@ -120,7 +120,9 @@ export default function AboutPage() {
                 {index + 1}
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2">{value.title}</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  {value.title}
+                </h3>
                 <p className="text-gray-600 leading-relaxed">
                   {value.description}
                 </p>
@@ -130,7 +132,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= TEAM (Optional) ================= */}
+      {/* ================= TEAM ================= */}
       {config.team && config.team.members.length > 0 && (
         <section className="px-6 max-w-6xl mx-auto pb-24">
           <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-12">
@@ -143,15 +145,10 @@ export default function AboutPage() {
                 key={index}
                 className="text-center p-6 rounded-2xl bg-gray-50 hover:shadow-lg transition-shadow"
               >
-                <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={128}
-                    height={128}
-                    className="object-cover w-full h-full"
-                  />
+                <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 flex items-center justify-center text-xs text-gray-500">
+                  Placeholder Image
                 </div>
+
                 <h3 className="text-xl font-bold">{member.name}</h3>
                 <p className="text-(--brand) font-medium text-sm mb-2">
                   {member.role}
@@ -176,9 +173,13 @@ export default function AboutPage() {
               {config.quote.text}
             </p>
             <div>
-              <p className="font-bold text-lg">{config.quote.author}</p>
+              <p className="font-bold text-lg">
+                {config.quote.author}
+              </p>
               {config.quote.role && (
-                <p className="text-white/70 text-sm">{config.quote.role}</p>
+                <p className="text-white/70 text-sm">
+                  {config.quote.role}
+                </p>
               )}
             </div>
           </div>
