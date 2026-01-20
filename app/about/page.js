@@ -56,15 +56,7 @@ export default function AboutPage() {
             {config.stats.sectionTitle}
           </h2>
 
-          <div
-            className="grid gap-6 p-8 rounded-3xl bg-gradient-to-br from-(--brand)/5 to-(--brand)/10 border border-(--brand)/10"
-            style={{
-              gridTemplateColumns: `repeat(${Math.min(
-                config.stats.items.length,
-                5
-              )}, 1fr)`,
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 p-8 rounded-3xl bg-gradient-to-br from-(--brand)/5 to-(--brand)/10 border border-(--brand)/10">
             {config.stats.items.map((stat, index) => (
               <div key={index} className="text-center py-4">
                 <p className="text-4xl md:text-5xl font-extrabold text-(--brand) mb-2">
